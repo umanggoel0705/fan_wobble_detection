@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            text-align: center;
+        }
+        .head #logo{
+            height: 60px;
+            width: 250px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+    <title>Fan Wobble</title>
+</head>
+<body>
+    <div class="head">
+        <img id="logo" src="static\logo.jpg" alt="logo">
+        <h1>Fan Wobble Detection</h1>
+    </div>
+    <hr>
+    <form class="form" action="/" method="POST" enctype="multipart/form-data">
+        <h3>Upload a fan video</h3>
+        <input type="file" id="vid" name="video" accept="video/mp4" required>
+        <br>
+        <button type="submit" id="submit" name="sub">Submit</button>
+    </form>
+
+    {% if output %}
+        <h2>{{ output }}</h2>
+        <h3>FPS: {{ fps }}</h3>
+        <img id="stream" src="{{ url_for('video_feed') }}" width="640" height="480" alt="Live Feed">
+        <img id="roi_stream" src="{{ url_for('video_feed_roi') }}" width="640" height="480" alt="ROI Live Feed">
+    {% endif %}
+    <br>
+    {% if plots_ready %}
+        <a href="{{ url_for('results') }}">
+            <button id="results-button">Show Results</button>
+        </a>
+    {% endif %}
+
+</body>
+</html>
