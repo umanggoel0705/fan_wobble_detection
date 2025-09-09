@@ -272,17 +272,10 @@ def main(video_path):
 
     bbox = cv2.selectROI("Select Fan", frame, fromCenter=True)
 
-    x, y, w, h = [int(v) for v in bbox]
-    cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
-    cv2.imshow("Auto ROI", frame)
-    cv2.waitKey(0)
-
     global ROI
     ROI = tuple(bbox)
     print("ROI in main:", ROI)
 
     tracker(video_path, ROI)
 
-    # global analysis_data
-    # return analysis_data
     
